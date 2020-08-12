@@ -18,7 +18,9 @@ def find_top_confirmed(n=15):
     return confirmed_df
 
 
-cdf = find_top_confirmed().to_html()
+cdf = find_top_confirmed()  # .to_html()
+data_pairs = [(country, confirmed)
+              for country, confirmed in zip(cdf.index, cdf['Confirmed'])]
 
 map1 = folium.Map(location=[28.644800, 77.216721],
                   zoom_start=6, tiles="Stamen toner")
@@ -39,7 +41,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def home():
-    return render_template("home.html", table=cdf, covid_map=html_map)
+    return render_template("home.html", table=cdf, covid_map=html_map, pairs=data_pairs)
 
 
 if __name__ == '__main__':
