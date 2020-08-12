@@ -13,3 +13,18 @@ def find_top_confirmed(n=15):
         ['Confirmed', 'Active', 'Deaths', 'Recovered']]
     confirmed_df = by_country.nlargest(n, 'Confirmed')[['Confirmed']]
     return confirmed_df
+
+
+map = folium.Map(location=[28.644800, 77.216721],
+                 zoom_start=4, tiles="Stamen toner")
+
+
+def marker_placer(x):
+    folium.Circle(location=[x[0], x[1]], radius=10000,
+                  popup='{}\nConfrimed Cases: {}' .format(x[3], x[2]), fill=True).add_to(map)
+
+
+corona_df[['Lat', 'Long_', 'Confirmed', 'Combined_Key']].apply(
+    lambda x: marker_placer(x), axis=1)
+
+map.save('map1.html')
