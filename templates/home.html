@@ -1,2 +1,38 @@
-{{table | safe}}
-{{covid_map | safe}}
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Start</h1>
+<div class="container">
+    <div class="row">
+        <div class=" col-md-3 col-lg-4">
+            <table class="table-responsive-sm table-dark">
+                <thead>
+                    <tr>
+                        <th scope="col">Country</th>
+                        <th scope="col">Confirmed Cases</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for pair in pairs%}
+                    <tr>
+                        <td>
+                            {{ pair[0]}}
+                        </td>
+                        <td>
+                            {{ pair[1]}}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+
+            </table>
+        </div>
+        <div class=" col-md-9 col-lg-8">
+
+            {{covid_map | safe}}
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
