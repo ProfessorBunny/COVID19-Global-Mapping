@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Corona Virus Tracker</h1>
+<div class="container-fluid">
+    <div class="row">
+        <div class=" col-md-3 col-lg-4">
+            <h5>
+                <font color='red'>Top 15 Countries</font>
+            </h5>
+            <p>This site uses data from a resource <a
+                    href="https://github.com/CSSEGISandData/COVID-19/tree/master/csse_covid_19_data">Johns Hopkins</a>
+                which
+                provide daily updated reports on worldwide COVID-19 cases
+            </p>
+            <table class="table-responsive-sm table-dark">
+                <thead>
+                    <tr>
+                        <th scope="col">Country</th>
+                        <th scope="col">Confirmed Cases</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for pair in pairs%}
+                    <tr>
+                        <td>
+                            {{ pair[0]}}
+                        </td>
+                        <td>
+                            {{ pair[1]}}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+
+            </table>
+        </div>
+        <div class=" col-md-9 col-lg-8">
+            <h5>
+                <font color='#8B0000'>COVID-19 World Map</font>
+            </h5>
+            <p>Using the same data I have created an updated map that provide information on worldwide confirmed cases,
+                death, recoveries, and active cases.
+            </p>
+            {{covid_map | safe}}
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
