@@ -3,7 +3,7 @@ import pandas
 from flask import Flask, render_template
 
 corona_df = pandas.read_csv(
-    "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_daily_reports/08-13-2020.csv")
+    "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_daily_reports/08-14-2020.csv")
 # now we have to remove NaN values from latitude and longitude cloumn(if there are any)
 # because if there are then program will give error, as marker can not be place for NaN value
 corona_df = corona_df.dropna(subset=['Lat'])
